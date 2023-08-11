@@ -75,6 +75,7 @@ private val darkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+@Suppress("SpellCheckingInspection")
 @Composable
 fun SensightTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),

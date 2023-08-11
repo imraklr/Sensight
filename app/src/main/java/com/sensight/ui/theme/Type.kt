@@ -8,12 +8,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.sensight.R
 
+@Suppress("SpellCheckingInspection")
 val inconsolataBold = FontFamily(
     Font(resId = R.font.inconsolata_bold)
 )
+@Suppress("SpellCheckingInspection")
 val inconsolataLight = FontFamily(
     Font(resId = R.font.inconsolata_light)
 )
+@Suppress("SpellCheckingInspection")
 val inconsolataRegular = FontFamily(
     Font(resId = R.font.inconsolata_regular)
 )
