@@ -37,6 +37,9 @@ fun SensorCard(
     Card(
         modifier = Modifier
             .padding(top = 4.dp)
+            .clickable {
+                expanded = !expanded
+            }
     ) {
         Column(
             modifier = Modifier
@@ -46,9 +49,6 @@ fun SensorCard(
                         stiffness = Spring.StiffnessVeryLow
                     )
                 )
-                .clickable {
-                    expanded = !expanded
-                }
         ) {
             SensorNameText(
                  sensor = sensor
