@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.sensight.ui.components
 
 import android.hardware.Sensor
@@ -13,25 +15,54 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.Spring
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import com.sensight.data.repository.getCommonPropertiesAmongSensorsForComponentInfoComposable
 
 @Composable
 fun SensorCard(
     sensor: Sensor,
     modifier: Modifier = Modifier
 ) {
+    Spacer(modifier = Modifier.padding(top = 4.dp))
+    var expanded by remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
-            .padding(top = 12.dp)
+            .padding(top = 4.dp)
     ) {
-        Column(modifier = Modifier) {
+        Column(
+            modifier = Modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessVeryLow
+                    )
+                )
+                .clickable {
+                    expanded = !expanded
+                }
+        ) {
             SensorNameText(
                  sensor = sensor
             )
             SensorVendorText(
                  sensor = sensor
             )
+            // Following composable will be expanded on click on the column and contracted
+            // respectively
+            if(expanded)
+                InfoComposable(sensor = sensor)
         }
     }
+    Spacer(modifier = Modifier.padding(top = 4.dp))
 }
 
 /*
@@ -77,6 +108,36 @@ fun SensorVendorText(
                 .fillMaxWidth(),
             textAlign = TextAlign.End
         )
+    }
+}
+
+@Composable
+fun InfoComposable(
+    sensor: Sensor,
+    modifier: Modifier = Modifier
+) {
+    val list = getCommonPropertiesAmongSensorsForComponentInfoComposable(sensor)
+    Column {
+        list.forEach { item ->
+            Row {
+                Text(
+                    text = stringResource(item.type),
+                    modifier = Modifier
+                        .weight(2f)
+                        .fillMaxWidth()
+                        .padding(start = 8.dp),
+                    textAlign = TextAlign.Start
+                )
+                Text(
+                    text = item.property,
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .padding(end = 16.dp),
+                    textAlign = TextAlign.End
+                )
+            }
+        }
     }
 }
 

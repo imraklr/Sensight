@@ -1,7 +1,6 @@
 package com.sensight
 
 import android.content.Context
-import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,7 +18,10 @@ class MainActivity : ComponentActivity() {
         // Create sensor service
         val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         setContent {
-            SensightTheme {
+            SensightTheme(
+                dynamicColor = true // If the device supports dynamic theming, the dynamic colors
+                                    // will be applied
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
