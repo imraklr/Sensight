@@ -78,24 +78,24 @@ private val darkColors = darkColorScheme(
 @Suppress("SpellCheckingInspection")
 @Composable
 fun SensightTheme(
-  darkTheme: Boolean = isSystemInDarkTheme(),
-  dynamicColor: Boolean = false,
-  content: @Composable () -> Unit
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = false,
+    content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
-  val colorScheme = when {
-      dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-          if(isSystemInDarkTheme())
-              dynamicDarkColorScheme(context)
-          else
-              dynamicLightColorScheme(context)
-      }
-      darkTheme -> darkColors
-      else -> lightColors
-  }
-
-  MaterialTheme(
-    colorScheme = colorScheme,
-    content = content
-  )
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            if(isSystemInDarkTheme())
+                dynamicDarkColorScheme(context)
+            else
+                dynamicLightColorScheme(context)
+        }
+        darkTheme -> darkColors
+        else -> lightColors
+    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+        content = content,
+        typography = Typography
+    )
 }

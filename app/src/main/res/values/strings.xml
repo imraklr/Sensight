@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Sensight</string>
+
+    // Sensor.TYPE_ALL properties string goes here. Basically the following properties apply to every
+    // sensor object
+    <string name="sensor_id">id</string>
+    <string name="sensor_fifoMaxEventCount">fifoMaxEventCount</string>
+    <string name="sensor_maxDelay">maxDelay</string>
+    <string name="sensor_fifoReservedEventCount">fifoReservedEventCount</string>
+    <string name="sensor_highestDirectReportRateLevel">highestDirectReportRateLevel</string>
+    <string name="sensor_minDelay">minDelay</string>
+    <string name="sensor_reportingMode">reportingMode</string>
+    <string name="sensor_type">type</string>
+    <string name="sensor_version">version</string>
+    <string name="sensor_isAdditionalInfoSupported">isAdditionalInfoSupported</string>
+    <string name="sensor_isDynamicSensor">isDynamicSensor</string>
+    <string name="sensor_power">power</string>
+    <string name="sensor_isWakeUpSensor">isWakeUpSensor</string>
 </resources>
